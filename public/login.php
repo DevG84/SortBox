@@ -1,6 +1,10 @@
 <?php
     session_start();
 
+    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+    header("Cache-Control: post-check=0, pre-check=0", false);
+    header("Pragma: no-cache");
+
     if (isset($_SESSION['usuario'])) {
         header("Location: dashboard.php");
         exit();
@@ -118,6 +122,12 @@
         span.textContent = mensaje;
         errorContainer.appendChild(span);
     }
+
+    window.addEventListener("pageshow", function (event) {
+        if (event.persisted) {
+            form.reset();
+        }
+    });
 
     const togglePassword = document.getElementById("togglePassword");
     const passwordInput = document.getElementById("password");

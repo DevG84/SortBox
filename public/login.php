@@ -17,7 +17,7 @@
         $stmt->bindParam(':user', $username);
         $stmt->bindParam(':pass', $password);
         $stmt->execute();
-
+        
         if ($stmt->rowCount() === 1) {
             $_SESSION['usuario'] = $username;
             header("Location: dashboard.php");
@@ -137,6 +137,8 @@
 
         togglePassword.innerHTML = passwordVisible ? eyeOffSVG : eyeSVG;
     });
+
+    form.reset();
     
     <?php if (!empty($errorMessage)): ?>
     mostrarError("<?php echo $errorMessage; ?>");

@@ -1,6 +1,11 @@
 <?php
     session_start();
 
+    if (isset($_SESSION['usuario'])) {
+        header("Location: dashboard.php");
+        exit();
+    }
+
     error_reporting(E_ALL);
     ini_set("display_errors", 1);
 
@@ -36,7 +41,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Iniciar sesión</title>
-    <link rel="stylesheet" href="/public/css/login.css" />
+    <link rel="stylesheet" href="css/login.css" />
     <link rel="icon" href="img/sortbox_onlyLogo.svg" type="image/png">
 </head>
 <body>

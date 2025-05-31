@@ -1,10 +1,33 @@
 html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #001017;
-    color: aliceblue;
     font-size: 16px;
     margin: 0;
     padding: 0;
+
+    --text: #EFE6C6;
+    --background: #0D0D0D;
+
+    --input-color: #1A1A1A;
+    --input-border: #E94E1B;
+
+    --primary-button: #C51C43;
+    --secondary-button: #E94E1B;
+
+    --button-hover: #e12553;
+    --button2-hover: #fa5a24;
+
+    --text-hover: #FFFFFF;
+    --text2-hover: #FFFFFF;
+
+    --accent: #F7A41D;
+
+    --error: #FF5E5E;
+    --accept: #008000FF;
+
+    --linearPrimarySecondary: linear-gradient(145deg, #1A1A1A, #0D0D0D);
+
+    color: var(--text);
+    background: var(--linearPrimarySecondary);
 }
 
 .container {
@@ -52,7 +75,7 @@ a {
 }
 
 .form {
-    background: #191d1d;
+    background: var(--background);
     border-radius: 10px;
     padding: 2rem;
     display: flex;
@@ -70,7 +93,6 @@ a {
 
 input, button {
     padding: 0.75rem;
-    border: none;
     border-radius: 8px;
     width: 100%;
     box-sizing: border-box;
@@ -78,29 +100,45 @@ input, button {
 }
 
 button {
-    background-color: #aaf;
+    border: none;
+    color: var(--text);
+    background-color: var(--primary-button);
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.secondaryB {
+    border: none;
+    color: var(--text);
+    background-color: var(--secondary-button);
     cursor: pointer;
     transition: background 0.3s;
 }
 
 button:hover {
-    background-color: #88c;
+    color: var(--text-hover);
+    background-color: var(--button-hover);
+}
+
+.secondaryB:hover {
+    color: var(--text-hover);
+    background-color: var(--button2-hover);
 }
 
 input {
-    border: 2px solid white;
-    background-color: #191d1d;
-    color: white;
+    border: 2px solid var(--input-border);
+    background-color: var(--input-color);
+    color: var(--text);
     outline: none;
     transition: border 0.3s ease;
 }
 
 input:required:valid {
-    border: 2px solid green;
+    border: 2px solid var(--accept);
 }
 
 input.invalid {
-    border: 2px solid #ff6384;
+    border: 2px solid var(--error);
 }
 
 .password-container {
@@ -123,16 +161,16 @@ input.invalid {
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    color: #aaa;
+    color: var(--text);
     transition: color 0.2s;
 }
 
 .toggle-password:hover {
-    color: #fff;
+    color: var(--text-hover);
 }
 
 .error {
-    color: #ff6384;
+    color: var(--error);
     font-size: 0.9rem;
     height: 1rem;
     display: block;

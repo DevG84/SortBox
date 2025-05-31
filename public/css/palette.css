@@ -1,0 +1,23 @@
+:root {
+    --text: #EFE6C6;
+    --background: #0D0D0D;
+
+    --input-color: #1A1A1A;
+    --input-border: #E94E1B;
+
+    --primary-button: #C51C43;
+    --secondary-button: #E94E1B;
+
+    --button-hover: #e12553;
+    --button2-hover: #fa5a24;
+
+    --text-hover: #FFFFFF;
+    --text2-hover: #FFFFFF;
+
+    --accent: #F7A41D;
+
+    --error: #FF5E5E;
+    --accept: #008000FF;
+
+    --linearPrimarySecondary: linear-gradient(145deg, #1A1A1A, #0D0D0D);
+}

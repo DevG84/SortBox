@@ -22,17 +22,26 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        $stmt = $connection->prepare("SELECT * FROM usuarios WHERE user = :user AND password = :pass");
-        $stmt->bindParam(':user', $username);
-        $stmt->bindParam(':pass', $password);
-        $stmt->execute();
-
-        if ($stmt->rowCount() === 1) {
-            $_SESSION['usuario'] = $username;
-            header("Location: dashboard.php");
-            exit();
+        if (!preg_match('/^[a-zA-Z0-9]+$/', $password)) {
+            $errorMessage = "La contraseña solo puede contener letras y números.";
         } else {
-            $errorMessage = "Usuario o contraseña incorrectos.";
+            $stmt = $connection->prepare("SELECT * FROM usuarios WHERE user = :user");
+            $stmt->bindParam(':user', $username);
+            $stmt->execute();
+
+            if ($stmt->rowCount() === 1) {
+                $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                if (password_verify($password, $user['password'])) {
+                    $_SESSION['usuario'] = $username;
+                    header("Location: dashboard.php");
+                    exit();
+                } else {
+                    $errorMessage = "Usuario o contraseña incorrectos.";
+                }
+            } else {
+                $errorMessage = "Usuario o contraseña incorrectos.";
+            }
         }
     }
 
@@ -75,7 +84,7 @@
             <div id="inputErrorContainer"></div>
 
             <div class="form-buttons">
-                <button type="button">Registrarse</button>
+                <button type="button" class="secondaryB">Registrarse</button>
                 <button type="submit" name="submit">Login</button>
             </div>
         </form>

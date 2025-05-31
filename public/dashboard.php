@@ -6,6 +6,8 @@
         logout();
     }
     authenticate();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -18,21 +20,28 @@
     <link rel="icon" href="img/sortbox_onlyLogo.svg" type="image/png">
 </head>
 <body>
-
-    <header class="header">
-        <a href="/sortbox/public/login.php"><img src="img/sortbox.svg" alt="SortBox" class="logo" /></a>
+<div class="container">
+    <div class="header">
+        <a href="login.php">
+            <img src="img/sortbox.svg" alt="SortBox" class="logo" />
+        </a>
         <nav class="links">
-            <a href="/sortbox/public/login.php">Inicio</a>
+            <a href="login.php">Inicio</a>
             <a href="/help">Ayuda</a>
         </nav>
-    </header>
+    </div>
 
-    <main class="form-container">
-        <h1>Hola, <?php echo htmlspecialchars($_SESSION['usuario']); ?> 🎉</h1>
-    </main>
+    <div class="sidebar">
+        <form method="POST">
+            <button type="submit" name="logout">Cerrar sesión</button>
+        </form>
+    </div>
 
-    <form method="POST">
-        <button type="submit" name="logout">Cerrar sesión</button>
-    </form>
+    <div class="content">
+        <main class="form-container">
+            <h1>Hola, <?php echo htmlspecialchars($_SESSION['usuario']); ?>.</h1>
+        </main>
+    </div>
+</div>
 </body>
 </html>

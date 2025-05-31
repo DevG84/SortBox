@@ -5,7 +5,7 @@
     header("Cache-Control: post-check=0, pre-check=0", false);
     header("Pragma: no-cache");
 
-    if (isset($_SESSION['usuario'])) {
+    if (isset($_SESSION['datos'])) {
         header("Location: dashboard.php");
         exit();
     }
@@ -22,18 +22,27 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        if (!preg_match('/^[a-zA-Z0-9]+$/', $password)) {
-            $errorMessage = "La contraseña solo puede contener letras y números.";
+        if (!preg_match('/^[a-zA-Z0-9@_\-.#$%&!*]+$/', $password)) {
+            $errorMessage = "La contraseña contiene caracteres inválidos.";
         } else {
-            $stmt = $connection->prepare("SELECT * FROM usuarios WHERE user = :user");
+            $stmt = $connection->prepare("SELECT * FROM usuarios WHERE LOWER(user) LIKE LOWER(:user)");
             $stmt->bindParam(':user', $username);
             $stmt->execute();
 
             if ($stmt->rowCount() === 1) {
-                $user = $stmt->fetch(PDO::FETCH_ASSOC);
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                if (password_verify($password, $user['password'])) {
-                    $_SESSION['usuario'] = $username;
+                if (password_verify($password, $result['password'])) {
+                    session_regenerate_id(true);
+
+                    $session = [
+                        'id' => $result['id'],
+                        'usuario' => $result['user'],
+                        'nombre' => $result['name'],
+                    ];
+
+                    $_SESSION['datos'] = $session;
+
                     header("Location: dashboard.php");
                     exit();
                 } else {
@@ -55,6 +64,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Iniciar sesión</title>
     <link rel="stylesheet" href="css/login.css" />
+    <link rel="stylesheet" href="css/palette.css">
     <link rel="icon" href="img/sortbox_onlyLogo.svg" type="image/png">
 </head>
 <body>

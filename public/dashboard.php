@@ -17,6 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
     <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/palette.css">
     <link rel="icon" href="img/sortbox_onlyLogo.svg" type="image/png">
 </head>
 <body>
@@ -39,7 +40,7 @@
 
     <div class="content">
         <main class="form-container">
-            <h1>Hola, <?php echo htmlspecialchars($_SESSION['usuario']); ?>.</h1>
+            <h1>Hola, <?php echo $_SESSION['datos']['nombre']; ?>.</h1>
         </main>
     </div>
 </div>

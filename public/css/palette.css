@@ -1,12 +1,18 @@
 :root {
-    --text: #EFE6C6;
-    --background: #0D0D0D;
 
-    --input-color: #1A1A1A;
-    --input-border: #E94E1B;
+    --color-deep: #7B1D2D;
+
+    --text: #EFE6C6;
+    --background: #0D0D0DFC;
+
+    --foreground: #EFE6C6;
+    --border-color: #C51C43;
 
     --primary-button: #C51C43;
     --secondary-button: #E94E1B;
+
+    --input-color: #1A1A1A;
+    --input-border: #E05926;
 
     --button-hover: #e12553;
     --button2-hover: #fa5a24;
@@ -19,5 +25,9 @@
     --error: #FF5E5E;
     --accept: #008000FF;
 
+    --linear-border: linear-gradient(145deg, #E05926, #e12553);
+
     --linearPrimarySecondary: linear-gradient(145deg, #1A1A1A, #0D0D0D);
+
+    --anotherLinear: linear-gradient(145deg, #500616, #6a1320, #500616);
 }

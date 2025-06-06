@@ -65,7 +65,7 @@
     <title>Iniciar sesión</title>
     <link rel="stylesheet" href="css/login.css" />
     <link rel="stylesheet" href="css/palette.css">
-    <link rel="icon" href="img/sortbox_onlyLogo.svg" type="image/png">
+    <link rel="icon" href="img/sortbox_onlyLogo.svg" type="image/svg">
 </head>
 <body>
 <div class="container">
@@ -94,8 +94,8 @@
             <div id="inputErrorContainer"></div>
 
             <div class="form-buttons">
-                <button type="button" class="secondaryB">Registrarse</button>
-                <button type="submit" name="submit">Login</button>
+                <button onclick="location.href='singin.php'" type="button" class="secondaryB">Registrarse</button>
+                <button type="submit" name="submit">Ingresar</button>
             </div>
         </form>
     </main>

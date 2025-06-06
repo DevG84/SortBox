@@ -54,6 +54,8 @@ a {
 
 .form {
     background: var(--background);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-radius: 10px;
     padding: 2rem;
     display: flex;
@@ -104,15 +106,20 @@ button:hover {
 }
 
 input {
-    border: 2px solid var(--input-border);
+    border: 2px solid transparent;
     background-color: var(--input-color);
     color: var(--text);
     outline: none;
     transition: border 0.3s ease;
 }
 
+input:focus {
+    border: 2px solid var(--color-deep);
+}
+
 input:required:valid {
     border: 2px solid var(--accept);
+
 }
 
 input.invalid {

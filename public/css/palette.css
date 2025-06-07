@@ -1,11 +1,10 @@
 :root {
-
-    --color-deep: #7B1D2D;
-
+    /* Paleta experimental
+     * (HACE FUNCIONAR EL LOGIN, DESPUÉS LO ARREGLO)
+     */
     --text: #EFE6C6;
-    --background: #0D0D0DFC;
+    --background: #0D0D0D;
 
-    --foreground: #EFE6C6;
     --border-color: #C51C43;
 
     --primary-button: #C51C43;
@@ -27,7 +26,12 @@
 
     --linear-border: linear-gradient(145deg, #E05926, #e12553);
 
-    --linearPrimarySecondary: linear-gradient(145deg, #1A1A1A, #0D0D0D);
+    --linearBackground: linear-gradient(145deg, #1A1A1A, #0D0D0D);
 
     --anotherLinear: linear-gradient(145deg, #500616, #6a1320, #500616);
+
+    /* Paleta definida */
+    --primary-color: #7B1D2D;
+    --foreground: #EFE6C6;
+
 }

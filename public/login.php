@@ -68,9 +68,15 @@
     <link rel="icon" href="img/sortbox_onlyLogo.svg" type="image/svg">
 </head>
 <body>
+<div class="blured-background"></div>
+<div class="overlay-background"></div>
 <div class="container">
 
     <header class="header">
+        <nav class="links">
+            <a href="/">Página principal</a>
+            <a href="/">Sobre nosotros</a>
+        </nav>
     </header>
 
     <main class="form-container">

@@ -24,7 +24,7 @@
 <div class="container">
     <div class="header">
         <a href="login.php">
-            <img src="img/sortbox.svg" alt="SortBox" class="logo" />
+            <img src="img/sortbox.png" alt="SortBox" class="logo" />
         </a>
         <nav class="links">
             <a href="login.php">Inicio</a>
@@ -40,7 +40,7 @@
 
     <div class="content">
         <main class="form-container">
-            <h1>Hola, <?php echo $_SESSION['datos']['nombre']; ?>.</h1>
+            <h1>Hola, <?php echo $_SESSION['datos']['nombre'] . ' ' . $_SESSION['datos']['apellido_p']; ?>.</h1>
         </main>
     </div>
 </div>

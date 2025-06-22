@@ -25,8 +25,8 @@
         if (!preg_match('/^[a-zA-Z0-9@_\-.#$%&!*]+$/', $password)) {
             $errorMessage = "La contraseña contiene caracteres inválidos.";
         } else {
-            $stmt = $connection->prepare("SELECT * FROM usuarios WHERE LOWER(user) LIKE LOWER(:user)");
-            $stmt->bindParam(':user', $username);
+            $stmt = $connection->prepare("SELECT * FROM usuarios WHERE LOWER(username) LIKE LOWER(:username)");
+            $stmt->bindParam(':username', $username);
             $stmt->execute();
 
             if ($stmt->rowCount() === 1) {
@@ -37,8 +37,11 @@
 
                     $session = [
                         'id' => $result['id'],
-                        'usuario' => $result['user'],
-                        'nombre' => $result['name'],
+                        'nombre_usuario' => $result['username'],
+                        'nombre' => $result['first_name'],
+                        'apellido_p' => $result['last_name'],
+                        'apellido_m' => $result['second_last_name'],
+                        'rol' => $result['role']
                     ];
 
                     $_SESSION['datos'] = $session;
@@ -82,7 +85,7 @@
     <main class="form-container">
         <form id="loginForm" class="form" method="POST" action="" novalidate>
 
-            <img src="img/sortbox.svg" alt="SortBox" class="logo" />
+            <img src="img/sortbox.png" alt="SortBox" class="logo" />
 
             <strong style="font-size: 2rem">Iniciar sesión</strong>
             <input type="text" placeholder="Usuario" name="username" required />

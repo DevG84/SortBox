@@ -68,16 +68,18 @@ try {
     $stmtUpdateStock->bindParam(':id_producto', $item['id'], PDO::PARAM_INT);
     $stmtUpdateStock->execute();
 
+    // Registrando en movimientos
     $stmtMovimiento = $conn->prepare("
-        INSERT INTO movimientos_inventario (id_producto, id_empleado, tipo, cantidad, motivo)
-        VALUES (:id_producto, :id_empleado, 'salida', :cantidad, 'Venta ID $id_venta')
+        INSERT INTO movimientos_inventario (id_producto, id_empleado, tipo, cantidad, motivo, fecha)
+        VALUES (:id_producto, :id_empleado, 'salida', :cantidad, 'Venta ID $id_venta', :fecha)
     ");
 
     foreach ($cart as $item) {
         $stmtMovimiento->execute([
             ':id_producto' => $item['id'],
             ':id_empleado' => $id_empleado,
-            ':cantidad' => $item['quantity']
+            ':cantidad' => $item['quantity'],
+            ':fecha' => date('Y-m-d H:i:s')
         ]);
     }
 

@@ -12,11 +12,11 @@ include("../../includes/database.php");
 
 $data = json_decode(file_get_contents('php://input'), true);
 
-if (!isset($_SESSION['datos']['id'])) {
+if (!isset($_SESSION['datos']['id_empleado'])) {
     echo json_encode(['success' => false, 'message' => 'Empleado no identificado en sesión']);
     exit;
 }
-$id_empleado = $_SESSION['datos']['id'];
+$id_empleado = $_SESSION['datos']['id_empleado'];
 
 if (!$data) {
     echo json_encode(['success' => false, 'message' => 'JSON inválido o no recibido']);

@@ -25,7 +25,7 @@
         if (!preg_match('/^[a-zA-Z0-9@_\-.#$%&!*]+$/', $password)) {
             $errorMessage = "La contraseña contiene caracteres inválidos.";
         } else {
-            $stmt = $connection->prepare("SELECT * FROM usuarios WHERE LOWER(username) LIKE LOWER(:username)");
+            $stmt = $connection->prepare("SELECT * FROM empleados WHERE LOWER(username) LIKE LOWER(:username)");
             $stmt->bindParam(':username', $username);
             $stmt->execute();
 

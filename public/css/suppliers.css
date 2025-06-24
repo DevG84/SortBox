@@ -1,0 +1,36 @@
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    color: var(--text);
+    background: var(--background);
+}
+
+.sidebar {
+    background-color: var(--sidebar-bg);
+    color: var(--text);
+    border-right: 2px solid var(--primary-button);
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    border-left: 3px solid transparent;
+    transition: all 0.3s ease;
+    color: var(--text);
+}
+
+.sidebar-link:hover,
+.sidebar-link.active {
+    background-color: rgba(197, 28, 67, 0.1);
+    border-left: 3px solid var(--primary-button);
+    color: var(--text);
+}
+
+.sidebar-link i {
+    color: var(--text);
+}
+
+.sidebar-link.active i,
+.sidebar-link.active span {
+    color: white;
+}

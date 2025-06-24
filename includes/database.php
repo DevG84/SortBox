@@ -2,7 +2,7 @@
 
 class Connection {
     private $host = "localhost";
-    private $dbname = "sortboxtest";
+    private $dbname = "sortbox";
     private $username = "root";
     private $password = "";
     private $port = "3306";

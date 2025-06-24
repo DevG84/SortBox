@@ -1,23 +1,23 @@
 <?php
-    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-    header("Pragma: no-cache");
-    include("../includes/auth.php");
-    if (isset($_POST['logout'])) {
-        logout();
-    }
-    authenticate();
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Pragma: no-cache");
+include("../includes/auth.php");
+if (isset($_POST['logout'])) {
+    logout();
+}
+authenticate();
 
-    $nombre = isset($_SESSION['datos']['nombre']) ? $_SESSION['datos']['nombre'] : '';
-    $apellido_p = isset($_SESSION['datos']['apellido_p']) ? $_SESSION['datos']['apellido_p'] : '';
-    $rolOriginal = isset($_SESSION['datos']['rol']) ? $_SESSION['datos']['rol'] : '';
-    $rolesTraducidos = [
-        'admin' => 'Administrador',
-        'supervisor' => 'Supervisor',
-        'operator' => 'Operador',
-        'viewer' => 'Invitado'
-    ];
-    $rol = isset($rolesTraducidos[$rolOriginal]) ? $rolesTraducidos[$rolOriginal] : 'Invitado';
-    $iniciales = strtoupper(substr($nombre, 0, 1) . substr($apellido_p, 0, 1));
+$nombre = isset($_SESSION['datos']['nombre']) ? $_SESSION['datos']['nombre'] : '';
+$apellido_p = isset($_SESSION['datos']['apellido_p']) ? $_SESSION['datos']['apellido_p'] : '';
+$rolOriginal = isset($_SESSION['datos']['rol']) ? $_SESSION['datos']['rol'] : '';
+$rolesTraducidos = [
+    'admin' => 'Administrador',
+    'supervisor' => 'Supervisor',
+    'operator' => 'Operador',
+    'viewer' => 'Invitado'
+];
+$rol = isset($rolesTraducidos[$rolOriginal]) ? $rolesTraducidos[$rolOriginal] : 'Invitado';
+$iniciales = strtoupper(substr($nombre, 0, 1) . substr($apellido_p, 0, 1));
 
 ?>
 
@@ -27,7 +27,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
-    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/movements.css" />
     <link rel="stylesheet" href="css/palette.css" />
     <link rel="icon" href="img/sortbox_onlyLogo.svg" type="image/png" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -44,12 +44,12 @@
     <!-- Navegación -->
     <nav class="flex-grow">
         <ul class="space-y-1">
-            <li><a href="./dashboard.php" class="sidebar-link active flex items-center p-3 rounded-md"><i class="fas fa-tachometer-alt w-6"></i><span class="ml-2">Dashboard</span></a></li>
+            <li><a href="./dashboard.php" class="sidebar-link flex items-center p-3 rounded-md"><i class="fas fa-tachometer-alt w-6"></i><span class="ml-2">Dashboard</span></a></li>
             <li><a href="./inventory.php" class="sidebar-link flex items-center p-3 rounded-md"><i class="fas fa-box w-6"></i><span class="ml-2">Inventario</span></a></li>
             <li><a href="./sells.php" class="sidebar-link flex items-center p-3 rounded-md"><i class="fas fa-shopping-cart w-6"></i><span class="ml-2">Ventas</span></a></li>
-            <li><a href="#" class="sidebar-link flex items-center p-3 rounded-md"><i class="fas fa-truck w-6"></i><span class="ml-2">Proveedores</span></a></li>
-            <li><a href="#" class="sidebar-link flex items-center p-3 rounded-md"><i class="fas fa-exchange-alt w-6"></i><span class="ml-2">Movimientos</span></a></li>
-            <li><a href="./settings" class="sidebar-link flex items-center p-3 rounded-md"><i class="fas fa-cog w-6"></i><span class="ml-2">Configuración</span></a></li>
+            <li><a href="./suppliers.php" class="sidebar-link flex items-center p-3 rounded-md"><i class="fas fa-truck w-6"></i><span class="ml-2">Proveedores</span></a></li>
+            <li><a href="./movements.php" class="sidebar-link active flex items-center p-3 rounded-md"><i class="fas fa-exchange-alt w-6"></i><span class="ml-2">Movimientos</span></a></li>
+            <li><a href="./settings.php" class="sidebar-link flex items-center p-3 rounded-md"><i class="fas fa-cog w-6"></i><span class="ml-2">Configuración</span></a></li>
         </ul>
     </nav>
 

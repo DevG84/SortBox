@@ -53,7 +53,7 @@ function handleRegistration($connection) {
     if (empty($authUsername) || empty($authPassword)) {
         $errors['auth'] = "Se requieren credenciales de administrador";
     } else {
-        $stmt = $connection->prepare("SELECT password FROM usuarios WHERE username = :authUsername AND role = 'admin'");
+        $stmt = $connection->prepare("SELECT password FROM empleados WHERE username = :authUsername AND role = 'admin'");
         $stmt->execute([':authUsername' => $authUsername]);
         $admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -64,7 +64,7 @@ function handleRegistration($connection) {
 
     // Verificar si el usuario ya existe
     if (empty($errors)) {
-        $stmt = $connection->prepare("SELECT COUNT(*) FROM usuarios WHERE username = :username");
+        $stmt = $connection->prepare("SELECT COUNT(*) FROM empleados WHERE username = :username");
         $stmt->execute([':username' => $username]);
         if ($stmt->fetchColumn() > 0) {
             $errors['username'] = "El nombre de usuario ya está registrado";
@@ -82,7 +82,7 @@ function handleRegistration($connection) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         $stmt = $connection->prepare("
-                INSERT INTO usuarios (username, first_name, last_name, second_last_name, password, role, created_at)
+                INSERT INTO empleados (username, first_name, last_name, second_last_name, password, role, created_at)
                 VALUES (:username, :first_name, :last_name, :second_last_name, :password, :role, NOW())
             ");
 

@@ -29,6 +29,8 @@ try {
         $query .= " AND m.fecha <= :hasta";
     }
 
+    $query .= " ORDER BY m.fecha DESC";
+
     $stmt = $conn->prepare($query);
 
     if ($tipo !== '') $stmt->bindParam(':tipo', $tipo);

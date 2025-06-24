@@ -254,17 +254,19 @@
                 })
                     .then(response => response.json())
                     .then(data => {
-                        if (data.errors.username && data.errors.username.includes('ya está registrado')) {
-                            authorizationModal.classList.add('hidden');
-                        } else {
-                            displayErrors(data.errors);
-                        }
-
                         if (data.success) {
                             authorizationModal.classList.add('hidden');
                             confirmationModal.classList.remove('hidden');
                         } else if (data.errors) {
-                            displayErrors(data.errors);
+                            if (data.errors.username && data.errors.username.includes('ya está registrado')) {
+                                authorizationModal.classList.add('hidden');
+                                const usernameError = document.getElementById('username-error');
+                                usernameError.textContent = data.errors.username;
+                                usernameError.style.display = 'block';
+
+                            } else {
+                                displayErrors(data.errors);
+                            }
                         }
                     })
                     .catch(error => {

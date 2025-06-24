@@ -34,3 +34,108 @@ html {
 .sidebar-link.active span {
     color: white;
 }
+
+input, select, textarea {
+    border: 2px solid transparent;
+    background-color: var(--input-color);
+    color: var(--text);
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    border: 2px solid var(--primary-color);
+}
+
+#movimientos-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--background);
+    color: var(--text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 0 0 10px rgba(197, 28, 67, 0.4);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#movimientos-table thead {
+    background: var(--primary-color);
+    color: var(--foreground);
+}
+
+#movimientos-table th,
+#movimientos-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+}
+
+#movimientos-table tbody tr:hover {
+    background: var(--linearBackground);
+    cursor: pointer;
+}
+
+#movimientos-table tbody tr:nth-child(even) {
+    background: #1A1A1A;
+}
+
+#movimientos-table tbody tr:nth-child(odd) {
+    background: #0D0D0D;
+}
+
+#movimientos-table button {
+    background-color: var(--primary-button);
+    color: var(--foreground);
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+#movimientos-table button:hover {
+    background-color: var(--button-hover);
+    color: var(--text-hover);
+    cursor: pointer;
+}
+
+.table-container {
+    overflow-x: auto;
+    border-radius: 8px;
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.4);
+}
+
+#filter-form label {
+    color: var(--text);
+}
+
+#filter-form select,
+#filter-form input[type="date"] {
+    background-color: var(--input-color);
+    color: var(--text);
+    border: 2px solid transparent;
+}
+
+#filter-form select:focus,
+#filter-form input[type="date"]:focus {
+    outline: none;
+    border-color: var(--accent);
+    border: 2px solid var(--primary-color);
+}
+
+#filter-form button {
+    background-color: var(--primary-button);
+    color: var(--foreground);
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+#filter-form button:hover {
+    background-color: var(--button-hover);
+    color: var(--text-hover);
+    cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}

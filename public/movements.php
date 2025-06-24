@@ -82,7 +82,111 @@ $iniciales = strtoupper(substr($nombre, 0, 1) . substr($apellido_p, 0, 1));
 </aside>
 <!-- Contenido -->
 <main class="flex-grow p-6">
-    <!-- Contenido de la página -->
+    <h1 class="text-2xl font-bold mb-4">Historial de movimientos</h1>
+
+    <!-- Filtros -->
+    <form id="filter-form" class="flex flex-wrap gap-4 mb-4">
+        <div>
+            <label for="tipo" class="text-white">Tipo</label>
+            <select name="tipo" id="tipo" class="block mt-1 rounded-md p-2 bg-gray-800 text-white">
+                <option value="">Todos</option>
+                <option value="entrada">Entrada</option>
+                <option value="salida">Salida</option>
+                <option value="ajuste">Ajuste</option>
+            </select>
+        </div>
+        <div>
+            <label for="desde" class="text-white">Desde</label>
+            <input type="date" name="desde" id="desde" class="block mt-1 rounded-md p-2 bg-gray-800 text-white border border-[var(--text)]">
+        </div>
+        <div>
+            <label for="hasta" class="text-white">Hasta</label>
+            <input type="date" name="hasta" id="hasta" class="block mt-1 rounded-md p-2 bg-gray-800 text-white border border-[var(--text)]">
+        </div>
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md self-end">Filtrar</button>
+        <button type="button" id="clear-filters" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md self-end">Borrar filtros</button>
+    </form>
+
+    <!-- Tabla -->
+    <div class="table-container">
+        <table id="movimientos-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Producto</th>
+                <th>Empleado</th>
+                <th>Tipo</th>
+                <th>Cantidad</th>
+                <th>Motivo</th>
+                <th>Fecha</th>
+            </tr>
+            </thead>
+            <tbody id="movimientos-tbody">
+
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.getElementById('clear-filters').addEventListener('click', function() {
+            document.getElementById('tipo').value = '';
+            document.getElementById('desde').value = '';
+            document.getElementById('hasta').value = '';
+            cargarMovimientos();
+        });
+
+        function cargarMovimientos(params = {}) {
+            const query = new URLSearchParams(params).toString();
+
+            fetch('utils/load_movements.php?' + query)
+                .then(res => res.json())
+                .then(data => {
+                    const tbody = document.getElementById('movimientos-tbody');
+                    tbody.innerHTML = '';
+
+                    if (!data.success) {
+                        tbody.innerHTML = `<tr><td colspan="7" class="px-6 py-4 text-red-500">${data.message}</td></tr>`;
+                        return;
+                    }
+
+                    if (data.data.length === 0) {
+                        tbody.innerHTML = `<tr><td colspan="7" class="px-6 py-4 text-center text-gray-400">Sin movimientos registrados.</td></tr>`;
+                        return;
+                    }
+
+                    data.data.forEach(m => {
+                        const row = document.createElement('tr');
+                        row.classList.add("hover:bg-gray-700");
+                        row.innerHTML = `
+                        <td class="px-6 py-4">${m.id_movimiento}</td>
+                        <td class="px-6 py-4">${m.producto}</td>
+                        <td class="px-6 py-4">${m.empleado}</td>
+                        <td class="px-6 py-4 capitalize">${m.tipo}</td>
+                        <td class="px-6 py-4">${m.cantidad}</td>
+                        <td class="px-6 py-4">${m.motivo}</td>
+                        <td class="px-6 py-4">${m.fecha}</td>
+                    `;
+                        tbody.appendChild(row);
+                    });
+                })
+                .catch(err => {
+                    document.getElementById('movimientos-tbody').innerHTML =
+                        `<tr><td colspan="7" class="px-6 py-4 text-red-500">Error: ${err.message}</td></tr>`;
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            cargarMovimientos();
+        });
+
+        document.getElementById('filter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const params = Object.fromEntries(formData.entries());
+            cargarMovimientos(params);
+        });
+    </script>
+
 </main>
 
 <script>

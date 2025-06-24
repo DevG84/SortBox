@@ -68,6 +68,19 @@ try {
     $stmtUpdateStock->bindParam(':id_producto', $item['id'], PDO::PARAM_INT);
     $stmtUpdateStock->execute();
 
+    $stmtMovimiento = $conn->prepare("
+        INSERT INTO movimientos_inventario (id_producto, id_empleado, tipo, cantidad, motivo)
+        VALUES (:id_producto, :id_empleado, 'salida', :cantidad, 'Venta ID $id_venta')
+    ");
+
+    foreach ($cart as $item) {
+        $stmtMovimiento->execute([
+            ':id_producto' => $item['id'],
+            ':id_empleado' => $id_empleado,
+            ':cantidad' => $item['quantity']
+        ]);
+    }
+
     $conn->commit();
 
     echo json_encode(['success' => true, 'message' => 'Venta procesada correctamente']);

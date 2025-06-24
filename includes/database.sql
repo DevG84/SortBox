@@ -47,13 +47,25 @@ CREATE TABLE ventas (
 );
 
 CREATE TABLE detalle_venta (
-       id_detalle INT AUTO_INCREMENT PRIMARY KEY,
-       id_venta INT NOT NULL,
-       id_producto INT NOT NULL,
-       cantidad INT NOT NULL,
-       precio_unitario DECIMAL(10,2) NOT NULL,
-       FOREIGN KEY (id_venta) REFERENCES ventas(id_venta),
-       FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
+    id_detalle INT AUTO_INCREMENT PRIMARY KEY,
+    id_venta INT NOT NULL,
+    id_producto INT NOT NULL,
+    cantidad INT NOT NULL,
+    precio_unitario DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (id_venta) REFERENCES ventas(id_venta),
+    FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
+);
+
+CREATE TABLE movimientos_inventario (
+    id_movimiento INT AUTO_INCREMENT PRIMARY KEY,
+    id_producto INT NOT NULL,
+    id_empleado INT NOT NULL,
+    tipo ENUM('entrada', 'salida', 'ajuste') NOT NULL,
+    cantidad INT NOT NULL,
+    motivo VARCHAR(255) NOT NULL,
+    fecha DATETIME NOT NULL,
+    FOREIGN KEY (id_producto) REFERENCES productos(id_producto),
+    FOREIGN KEY (id_empleado) REFERENCES empleados(id_empleado)
 );
 
 -- INSERCIONES
@@ -122,3 +134,13 @@ INSERT INTO detalle_venta (id_detalle, id_venta, id_producto, cantidad, precio_u
 (8, 5, 10, 1, 42.00),
 (9, 5, 2, 1, 14.00),
 (10, 6, 8, 1, 65.00);
+
+-- Movimientos
+
+INSERT INTO movimientos_inventario (id_producto, id_empleado, tipo, cantidad, motivo, fecha) VALUES
+(3, 5, 'ajuste', 9, 'Caducado', '2025-06-21 16:51:00'),
+(2, 3, 'salida', 10, 'Donación', '2025-06-20 12:38:00'),
+(9, 6, 'ajuste', 3, 'Error de inventario', '2025-06-22 03:24:00'),
+(4, 2, 'salida', 1, 'Robo', '2025-06-19 21:17:00'),
+(10, 3, 'ajuste', 6, 'Caducado', '2025-06-15 18:29:00'),
+(10, 1, 'entrada', 3, 'Compra a proveedor', '2025-06-18 12:36:00');

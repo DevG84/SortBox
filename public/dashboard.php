@@ -1,7 +1,10 @@
 <?php
     header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
     header("Pragma: no-cache");
+
     include("../includes/auth.php");
+    include("../includes/database.php");
+
     if (isset($_POST['logout'])) {
         logout();
     }
@@ -18,6 +21,8 @@
     ];
     $rol = isset($rolesTraducidos[$rolOriginal]) ? $rolesTraducidos[$rolOriginal] : 'Invitado';
     $iniciales = strtoupper(substr($nombre, 0, 1) . substr($apellido_p, 0, 1));
+
+    $connection = (new Connection())->connect();
 
 ?>
 

@@ -34,3 +34,61 @@ html {
 .sidebar-link.active span {
     color: white;
 }
+
+input, select, textarea {
+    border: 2px solid transparent;
+    background-color: var(--input-color);
+    color: var(--text);
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    border: 2px solid var(--primary-color);
+}
+
+.custom-card {
+    background-color: var(--sidebar-bg);
+    color: var(--text);
+}
+
+.custom-input {
+    border: 2px solid var(--primary-button);
+    background-color: var(--input-color);
+    color: var(--text);
+}
+
+.custom-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.custom-table th, .custom-table td {
+    border-bottom: 1px solid rgba(224,89,38,0.3);
+}
+
+.btn-primary {
+    background-color: var(--primary-button);
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: rgba(224,89,38,0.8);
+}
+
+.btn-secondary {
+    background-color: var(--primary-color);
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+#modal {
+    border: 2px solid var(--primary-button);
+    background-color: var(--background);
+}

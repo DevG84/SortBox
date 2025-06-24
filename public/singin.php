@@ -12,7 +12,7 @@
 <div class="form-container w-full max-w-5xl">
     <img src="img/sortbox.png" alt="Sortbox" class="w-full max-w-5xl object-contain mb-6" style="height: 80px;">
 
-    <form id="registrationForm" class="p-6" method="post" action="register.php">
+    <form id="registrationForm" class="p-6" method="post" action="utils/register_employee.php">
         <div class="flex flex-col md:flex-row gap-6">
             <!-- Columna izquierda - Formulario -->
             <div class="w-full md:w-1/2 space-y-5">

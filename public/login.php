@@ -36,7 +36,7 @@
                     session_regenerate_id(true);
 
                     $session = [
-                        'id' => $result['id'],
+                        'id' => $result['id_empleado'],
                         'nombre_usuario' => $result['username'],
                         'nombre' => $result['first_name'],
                         'apellido_p' => $result['last_name'],

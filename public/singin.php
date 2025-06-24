@@ -236,7 +236,6 @@
             });
 
             confirmAuthBtn.addEventListener('click', function () {
-                console.log('Botón Autorizar presionado');
                 const authUsername = document.getElementById('authUsername').value;
                 const authPassword = document.getElementById('authPassword').value;
 
@@ -255,12 +254,16 @@
                 })
                     .then(response => response.json())
                     .then(data => {
-                        console.log(data);
+                        if (data.errors.username && data.errors.username.includes('ya está registrado')) {
+                            authorizationModal.classList.add('hidden');
+                        } else {
+                            displayErrors(data.errors);
+                        }
+
                         if (data.success) {
                             authorizationModal.classList.add('hidden');
                             confirmationModal.classList.remove('hidden');
                         } else if (data.errors) {
-                            authorizationModal.classList.add('hidden');
                             displayErrors(data.errors);
                         }
                     })

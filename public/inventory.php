@@ -47,7 +47,6 @@ $iniciales = strtoupper(substr($nombre, 0, 1) . substr($apellido_p, 0, 1));
             <li><a href="./dashboard.php" class="sidebar-link flex items-center p-3 rounded-md"><i class="fas fa-tachometer-alt w-6"></i><span class="ml-2">Dashboard</span></a></li>
             <li><a href="./inventory.php" class="sidebar-link active flex items-center p-3 rounded-md"><i class="fas fa-box w-6"></i><span class="ml-2">Inventario</span></a></li>
             <li><a href="./sells.php" class="sidebar-link flex items-center p-3 rounded-md"><i class="fas fa-shopping-cart w-6"></i><span class="ml-2">Ventas</span></a></li>
-            <li><a href="./suppliers.php" class="sidebar-link flex items-center p-3 rounded-md"><i class="fas fa-truck w-6"></i><span class="ml-2">Proveedores</span></a></li>
             <li><a href="./movements.php" class="sidebar-link flex items-center p-3 rounded-md"><i class="fas fa-exchange-alt w-6"></i><span class="ml-2">Movimientos</span></a></li>
             <li><a href="./settings.php" class="sidebar-link flex items-center p-3 rounded-md"><i class="fas fa-cog w-6"></i><span class="ml-2">Configuración</span></a></li>
         </ul>
